@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday!</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(45deg, #8acff2, #f8f8f8);
+        overflow: hidden;
+        font-family: 'Comic Sans MS', cursive;
+        color: #fff;
+        text-align: center;
+    }
+
+    h1, .amira {
+        margin-top: 20px;
+        font-size: 8vw;
+        text-shadow: 2px 2px #ff4081;
+        animation: pulse 1.5s infinite;
+        opacity: 0;
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+
+    .balloon {
+        position: absolute;
+        width: 60px;
+        height: 80px;
+        background: radial-gradient(circle, #d31531, #ff4081);
+        border-radius: 50%;
+        opacity: 0.8;
+        animation: float 6s linear infinite;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(100vh) rotate(0deg); opacity: 0.8; }
+        100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+    }
+
+    .message {
+        margin-top: 20px;
+        font-size: 5vw;
+        padding: 0 5vw;
+        opacity: 0;
+    }
+
+    button {
+        margin-top: 30px;
+        padding: 10px 20px;
+        font-size: 5vw;
+        background: #fff;
+        color: #ff4081;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #ff4081;
+        color: #fff;
+    }
+
+    .cake {
+        margin-top: 20px;
+        display: none;
+    }
+
+    .cake img {
+        width: 90%;
+        max-width: 400px;
+        height: auto;
+        border-radius: 50%;
+        animation: fadeIn 2s forwards;
+    }
+
+    @keyframes fadeIn {
+        to { opacity: 1; }
+    }
+
+    /* Responsive tweaks */
+    @media (min-width: 768px) {
+        h1, .amira {
+            font-size: 60px;
+        }
+
+        .message {
+            font-size: 30px;
+        }
+
+        button {
+            font-size: 20px;
+        }
+    }
+</style>
+</head>
+<body>
+
+<h1>🎉 Happy Birthday! 🎉</h1>
+<h1 class="amira">🎉 AMIRA 🎉</h1>
+<div class="message"><p>كل سنه وانتي طيبه يا ست الكل وربنا يخليكي لينا وميحرمني منك ابدا</p></div>
+<div class="cake">
+    <img src="WhatsApp Image 2025-07-30 at 21.54.23_dba6dca9.jpg" alt="Birthday Cake">
+</div>
+
+<button id="startBtn">start party</button>
+
+<audio id="music" src="happy-birthday-to-you-370804.mp3"></audio>
+
+<script>
+function createBalloon() {
+    const balloon = document.createElement("div");
+    balloon.classList.add("balloon");
+    balloon.style.left = Math.random() * 100 + "vw";
+    balloon.style.background = `radial-gradient(circle, ${randomColor()}, ${randomColor()})`;
+    balloon.style.animationDuration = (4 + Math.random() * 4) + "s";
+    document.body.appendChild(balloon);
+    setTimeout(() => balloon.remove(), 8000);
+}
+
+function randomColor() {
+    const colors = ["#ff6f91", "#ff9a9e", "#fbc2eb", "#a18cd1", "#84fab0", "#8fd3f4"];
+    return colors[Math.floor(Math.random() * colors.length)];
+}
+
+document.getElementById("startBtn").addEventListener("click", function() {
+    setInterval(createBalloon, 300);
+    this.style.display = "none";
+    document.querySelector(".cake").style.display = "block";
+    document.querySelector(".message").style.opacity = 1;
+    document.querySelector("h1").style.opacity = 1;
+    document.querySelector(".amira").style.opacity = 1;
+
+    const audio = document.getElementById("music");
+    audio.play();
+});
+</script>
+
+</body>
+</html>
